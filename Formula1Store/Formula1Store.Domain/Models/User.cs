@@ -8,7 +8,7 @@ namespace Formula1Store.Domain.Models
     {
         public User()
         {
-            //this.UserOrders = new List<UserOrder>();
+            this.UserOrders = new List<UserOrder>();
         }
 
         [Required]
@@ -19,6 +19,6 @@ namespace Formula1Store.Domain.Models
         [StringLength(LastNameMaxLength, MinimumLength = LastNameMinLength)]
         public string LastName { get; set; } = null!;
 
-        //public ICollection<UserOrder> UserOrders { get; set; }
+        public ICollection<UserOrder> UserOrders { get; set; }
     }
 }
