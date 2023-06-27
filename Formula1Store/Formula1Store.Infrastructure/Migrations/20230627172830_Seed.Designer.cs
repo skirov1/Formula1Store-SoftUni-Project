@@ -4,6 +4,7 @@ using Formula1Store.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Formula1Store.Infrastructure.Migrations
 {
     [DbContext(typeof(Formula1StoreDbContext))]
-    partial class Formula1StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230627172830_Seed")]
+    partial class Seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -298,44 +300,6 @@ namespace Formula1Store.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "06078462-5a16-440a-b4e1-67f940716a1d",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1b9ae439-1710-4fe3-bc51-3f7023e2856a",
-                            Email = "admin@email.com",
-                            EmailConfirmed = false,
-                            FirstName = "Admin",
-                            LastName = "Admin",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN@EMAIL.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEC7jgF81nPIDJUw3Xi/VK1N96eg7qRpWyQVBSH8wuFm1kZbuoPu4Q5BZxALcRWaBrg==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "945b95cf-8cb6-4e12-9ecd-ec49af625c80",
-                            TwoFactorEnabled = false,
-                            UserName = "Admin"
-                        },
-                        new
-                        {
-                            Id = "f1d7e58f-aff4-476d-bf3a-b621be15c5e8",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "a361241d-e4e3-4591-a2bc-01533144bffd",
-                            Email = "kiro@gmail.com",
-                            EmailConfirmed = false,
-                            FirstName = "Kiril",
-                            LastName = "Atanasov",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "KIRO@GMAIL.COM",
-                            NormalizedUserName = "KIRO",
-                            PasswordHash = "AQAAAAEAACcQAAAAENtSEijGb+64el3AhvSkHWTqgLtAG91UfuLq5H87T5WbXkKQBhbh7CreLeOP7RfvlA==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "21e9472f-f214-4b3d-8007-33f79e6a51d4",
-                            TwoFactorEnabled = false,
-                            UserName = "Kiro"
-                        });
                 });
 
             modelBuilder.Entity("Formula1Store.Domain.Models.UserOrder", b =>

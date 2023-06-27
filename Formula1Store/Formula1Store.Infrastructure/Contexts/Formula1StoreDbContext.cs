@@ -2,6 +2,7 @@
 using Formula1Store.Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using System.Reflection.Emit;
 
 namespace Formula1Store.Infrastructure.Data
@@ -32,6 +33,9 @@ namespace Formula1Store.Infrastructure.Data
                   uo.UserId,
                   uo.OrderId
               });
+
+            builder.ApplyConfigurationsFromAssembly(
+                Assembly.GetAssembly(typeof(Formula1StoreDbContext))!);
 
             base.OnModelCreating(builder);
         }

@@ -28,6 +28,5 @@ namespace Formula1Store.Domain.Models
 
         [ForeignKey(nameof(CategoryId))]
         public Category Category { get; set; } = null!;
-
     }
 }
