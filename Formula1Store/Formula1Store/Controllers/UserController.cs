@@ -103,6 +103,7 @@ namespace Formula1Store.Controllers
             return View(model);
         }
 
+
         public async Task<IActionResult> Logout()
         {
             await signInManager.SignOutAsync();

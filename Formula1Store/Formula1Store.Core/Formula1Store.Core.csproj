@@ -7,11 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Formula1Store.Infrastructure\Formula1Store.Infrastructure.csproj" />
     <ProjectReference Include="..\Formula1Store.ViewModels\Formula1Store.ViewModels.csproj" />
   </ItemGroup>

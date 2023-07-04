@@ -1,3 +1,4 @@
+using Formula1Store.Core.Extensions;
 using Formula1Store.Domain.Models;
 using Formula1Store.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
@@ -27,7 +28,13 @@ builder.Services.AddDefaultIdentity<User>(options =>
 .AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<Formula1StoreDbContext>();
 
+builder.Services.AddApplicationServices();
 builder.Services.AddControllersWithViews();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/User/Login";
+    options.LoginPath = "/User/Logout";
+});
 
 var app = builder.Build();
 
