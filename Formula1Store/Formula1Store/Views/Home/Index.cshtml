@@ -1,8 +1,68 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "F1 Merch Store";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .card {
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+        .card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            height: 200px;
+            object-fit: cover;
+        }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <h1>Welcome to the Formula 1 Merch Store</h1>
+            <p>Find the best Formula 1 merchandise for fans of all ages.</p>
+            <a asp-controller="Product" asp-action="All" class="btn btn-primary">Shop Now</a>
+        </div>
+        <div class="col-lg-6">
+            <img src="/img/F1-logo.png" alt="Formula 1 Banner" class="img-fluid">
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <img src="https://example.com/category1.jpg" class="card-img-top" alt="Category 1">
+                <div class="card-body">
+                    <h5 class="card-title">Category 1</h5>
+                    <p class="card-text">Explore our collection of Category 1 merchandise.</p>
+                    <a href="/shop/category1" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <img src="https://example.com/category2.jpg" class="card-img-top" alt="Category 2">
+                <div class="card-body">
+                    <h5 class="card-title">Category 2</h5>
+                    <p class="card-text">Discover our range of Category 2 products.</p>
+                    <a href="/shop/category2" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card">
+                <img src="https://example.com/category3.jpg" class="card-img-top" alt="Category 3">
+                <div class="card-body">
+                    <h5 class="card-title">Category 3</h5>
+                    <p class="card-text">Shop the latest Category 3 merchandise.</p>
+                    <a href="/shop/category3" class="btn btn-primary">View Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

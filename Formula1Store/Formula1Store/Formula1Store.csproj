@@ -31,8 +31,4 @@
     <ProjectReference Include="..\Formula1Store.Core\Formula1Store.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
-  </ItemGroup>
-
 </Project>
