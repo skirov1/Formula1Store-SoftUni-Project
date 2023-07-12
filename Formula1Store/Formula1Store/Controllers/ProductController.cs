@@ -27,10 +27,17 @@ namespace Formula1Store.Controllers
                AllProductsQueryModel.ProductsPerPage);
 
             query.TotalProductsCount = result.TotalProductsCount;
-            //query.Categories = await productService
+            query.Categories = await productService.AllCategoriesNames();
             query.Products = result.Products;
 
             return View(query);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ProductDetails(int id)
+        {
+            var model = await productService.ProductDetails(id);
+            return View(model);
         }
     }
 }

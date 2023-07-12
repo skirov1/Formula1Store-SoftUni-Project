@@ -4,43 +4,36 @@
     ViewBag.Title = "Products";
 }
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-lg-3">
-            <h3>Categories</h3>
-            <ul id="category-list" class="list-group">
-                <li data-category="all" class="list-group-item active">All</li>
-                @foreach (var category in Model.Products.Select(p => p.Category).Distinct())
+<form method="get">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>Categories</h3>
+                <label asp-for="Category"></label>
+                <select asp-for="Category" class="form-control">
+                    <option value="">All</option>
+                    @foreach (var category in Model.Categories)
+                    {
+                        <option value="@category">@category</option>
+                    }
+                </select>
+            </div>
+            <div id="product-list" class="col-lg-9 row">
+                @foreach (var product in Model.Products)
                 {
-                    <li data-category="@category" class="list-group-item">@category</li>
-                }
-            </ul>
-        </div>
-        <div id="product-list" class="col-lg-9 row">
-            @foreach (var product in Model.Products)
-            {
-                <div class="col-lg-4 mb-4">
-                    <div class="card h-100">
-                        <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name">
-                        <div class="card-body">
-                            <h5 class="card-title">@product.Name</h5>
-                            <p class="card-text">Price: $@product.Price</p>
-                        </div>
-                        <div class="card-footer">
-                            <a href="#" class="btn btn-primary btn-sm mr-2">Details</a>
-                            <a href="#" class="btn btn-success btn-sm">Add to Cart</a>
-                        </div>
+                    <div class="col-lg-4 mb-4">
+                        <partial name="Partials/_ProductPartial" model="product" />
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
-</div>
+</form>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script>
+@*<script>
     $(document).ready(function () {
         $("#category-list li").on("click", function () {
             $("#category-list li").removeClass("active");
@@ -50,6 +43,7 @@
         });
 
         function filterProducts(category) {
+            debugger;
             $("#product-list .col-lg-4").hide();
             if (category === "all") {
                 $("#product-list .col-lg-4").show();
@@ -58,4 +52,4 @@
             }
         }
     });
-</script>
+</script>*@

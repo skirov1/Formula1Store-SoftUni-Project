@@ -17,6 +17,19 @@ namespace Formula1Store.Core.Services
             this.repo = _repo;
         }
 
+        public async Task<IEnumerable<Category>> AllCategories()
+        {
+            return await repo.AllReadonly<Category>().ToListAsync();
+        }
+
+        public async Task<IEnumerable<string>> AllCategoriesNames()
+        {
+            return await repo.AllReadonly<Category>()
+                .Select(c => c.Name)
+                .Distinct()
+                .ToListAsync();
+        }
+
         public async Task<AllProductsQueryModel> GetAllAsync(string? category = null, int currentPage = 1, string? searchTerm = null, ProductSorting sorting = ProductSorting.LowestPrice, int productsPerPage = 5)
         {
             var result = new AllProductsQueryModel();
@@ -67,5 +80,20 @@ namespace Formula1Store.Core.Services
             return result;
         }
 
+        public async Task<ProductViewModel> ProductDetails(int id)
+        {
+            return await repo.AllReadonly<Product>()
+                .Where(p => p.Id == id)
+                .Select (p => new ProductViewModel()
+                {
+                    Id = p.Id,
+                    Name = p.Name,
+                    Description = p.Description,
+                    ImageUrl = p.ImageUrl,
+                    Price = p.Price,
+                    Category = p.Category.Name
+                })
+                .FirstAsync();         
+        }
     }
 }

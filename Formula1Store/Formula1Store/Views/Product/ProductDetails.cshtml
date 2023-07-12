@@ -1,0 +1,54 @@
+﻿@model ProductViewModel
+
+<style>
+    .product-details {
+        text-align: center;
+    }
+
+    .product-image {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .product-name {
+        font-size: 24px;
+        margin-top: 20px;
+        margin-bottom: 32px;
+    }
+
+    .product-description {
+        font-size: 18px;
+        margin-bottom: 32px;
+    }
+
+    .product-price {
+        font-size: 20px;
+        margin-top: 10px;
+        margin-bottom: 32px;
+    }
+
+    .product-category {
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 32px;
+    }
+</style>
+
+<div class="container">
+    <h1 class="text-center" style="margin-bottom: 64px">Product Details</h1>
+    <div class="row product-details">
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" class="img-fluid product-image" alt="Product Image">
+        </div>
+        <div class="col-md-6">
+            <h2 class="product-name">@Model.Name</h2>
+            <p class="product-description">@Model.Description</p>
+            <p class="product-price">Price: $@Model.Price</p>
+            <p class="product-category">Category: @Model.Category</p>
+            <a class="btn btn-primary btn-sm mr-2" asp-controller="Product" asp-action="Edit"
+               asp-route-id="@Model.Id">Edit</a>
+            <a class="btn btn-success btn-sm" asp-controller="Cart" asp-action="AddToCart"
+               asp-route-id="@Model.Id">Add to Cart</a>
+        </div>
+    </div>
+</div>

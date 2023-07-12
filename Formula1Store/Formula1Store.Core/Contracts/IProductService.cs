@@ -11,5 +11,9 @@ namespace Formula1Store.Core.Contracts
             string? searchTerm = null,
             ProductSorting sorting = ProductSorting.LowestPrice,
             int productsPerPage = 5);
+
+        Task<IEnumerable<Category>> AllCategories();
+        Task<IEnumerable<string>> AllCategoriesNames();
+        Task<ProductViewModel> ProductDetails(int id);
     }
 }
