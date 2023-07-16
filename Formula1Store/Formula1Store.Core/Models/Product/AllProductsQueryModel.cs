@@ -1,5 +1,5 @@
 ﻿using Formula1Store.Domain.Enums;
-using Formula1Store.Core.Models.Product;
+
 
 namespace Formula1Store.Core.Models.Product
 {
@@ -19,6 +19,6 @@ namespace Formula1Store.Core.Models.Product
 
         public IEnumerable<string> Categories { get; set; } = Enumerable.Empty<string>();
 
-        public IEnumerable<ProductViewModel> Products { get; set; } = Enumerable.Empty<ProductViewModel>();
+        public IEnumerable<ProductServiceModel> Products { get; set; } = Enumerable.Empty<ProductServiceModel>();
     }
 }

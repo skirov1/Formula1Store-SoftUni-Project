@@ -1,5 +1,5 @@
 ﻿using Formula1Store.Core.Contracts;
-using Formula1Store.ViewModels.Product;
+using Formula1Store.Core.Models.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +13,42 @@ namespace Formula1Store.Controllers
         public ProductController(IProductService _productService)
         {
             this.productService = _productService;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            var model = new ProductModel()
+            {
+                ProductCategories = await productService.AllCategories()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(ProductModel model)
+        {
+            //if (!(this.User.IsInRole(AdminRoleName)))
+            //{
+            //    return RedirectToAction("AccessDenied", "Error");
+            //}
+
+            //if ((await productService.CategoryExists(model.CategoryId)) == false)
+            //{
+            //    ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist!");
+            //}
+
+            if (!ModelState.IsValid)
+            {
+                model.ProductCategories = await productService.AllCategories();
+
+                return View(model);
+            }
+
+            int id = await productService.Create(model);
+
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         [HttpGet]
@@ -34,10 +70,105 @@ namespace Formula1Store.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ProductDetails(int id)
+        public async Task<IActionResult> Details(int id)
         {
             var model = await productService.ProductDetails(id);
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            if ((await productService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            var product = await productService.ProductDetails(id);
+            var categoryId = await productService.GetProductCategoryId(id);
+
+            var model = new ProductModel()
+            {
+                Id = id,
+                Name = product.Name,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl,
+                Price = product.Price,
+                CategoryId = categoryId,
+                ProductCategories = await productService.AllCategories()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, ProductModel model)
+        {
+
+            if ((await productService.Exists(model.Id)) == false)
+            {
+                ModelState.AddModelError("", "Product does not exist");
+                model.ProductCategories = await productService.AllCategories();
+
+                return View(model);
+            }
+
+            //if (!(this.User.IsInRole(AdminRoleName)))
+            //{
+            //    return RedirectToAction("AccessDenied", "Error");
+            //}
+
+            if ((await productService.CategoryExists(model.CategoryId)) == false)
+            {
+                ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist");
+                model.ProductCategories = await productService.AllCategories();
+
+                return View(model);
+            }
+
+            if (ModelState.IsValid == false)
+            {
+                model.ProductCategories = await productService.AllCategories();
+
+                return View(model);
+            }
+
+            await productService.Edit(model.Id, model);
+
+            return RedirectToAction(nameof(Details), new { id = model.Id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if ((await productService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            } 
+
+            var product = await productService.ProductDetails(id);
+            var model = new ProductDetailsModel()
+            {
+                Name = product.Name,
+                Description = product.Description,
+                ImageUrl = product.ImageUrl
+            };
+
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id, ProductDetailsModel model)
+        {
+            if ((await productService.Exists(id)) == false)
+            {
+                return RedirectToAction(nameof(All));
+            }
+
+            await productService.Delete(id);
+
+            return RedirectToAction(nameof(All));
         }
     }
 }

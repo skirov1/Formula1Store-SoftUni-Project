@@ -1,4 +1,4 @@
-﻿using Formula1Store.Models;
+﻿using Formula1Store.Core.Models.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 

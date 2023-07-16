@@ -1,7 +1,7 @@
 ﻿using Formula1Store.Core.Contracts;
+using Formula1Store.Core.Models.Category;
 using Formula1Store.Core.Repositories;
 using Formula1Store.Domain.Models;
-using Formula1Store.ViewModels.Category;
 using Microsoft.EntityFrameworkCore;
 
 namespace Formula1Store.Core.Services

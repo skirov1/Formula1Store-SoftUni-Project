@@ -33,6 +33,7 @@ namespace Formula1Store.Domain.Common
             public const int ProductNameMinLength = 3;
 
             public const int DescriptionMaxLength = 1000;
+            public const int DescriptionMinLength = 10;
         }
 
         public static class Category

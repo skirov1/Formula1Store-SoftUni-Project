@@ -1,4 +1,12 @@
-﻿@model ProductViewModel
+﻿@model ProductDetailsModel
+
+@{
+    ViewBag.Title = $"{Model.Name}";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+<br />
 
 <style>
     .product-details {
@@ -8,12 +16,6 @@
     .product-image {
         max-width: 300px;
         margin: 0 auto;
-    }
-
-    .product-name {
-        font-size: 24px;
-        margin-top: 20px;
-        margin-bottom: 32px;
     }
 
     .product-description {
@@ -35,18 +37,21 @@
 </style>
 
 <div class="container">
-    <h1 class="text-center" style="margin-bottom: 64px">Product Details</h1>
     <div class="row product-details">
         <div class="col-md-6">
             <img src="@Model.ImageUrl" class="img-fluid product-image" alt="Product Image">
         </div>
         <div class="col-md-6">
-            <h2 class="product-name">@Model.Name</h2>
             <p class="product-description">@Model.Description</p>
-            <p class="product-price">Price: $@Model.Price</p>
+            <p class="product-price">Price: $@String.Format("{0:f2}", Model.Price)</p>
             <p class="product-category">Category: @Model.Category</p>
-            <a class="btn btn-primary btn-sm mr-2" asp-controller="Product" asp-action="Edit"
-               asp-route-id="@Model.Id">Edit</a>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <a class="btn btn-warning" asp-controller="Product" asp-action="Edit"
+                   asp-route-id="@Model.Id">Edit</a>
+                <a class="ml-2 btn btn-danger" asp-controller="Product" asp-action="Delete"
+                   asp-route-id="@Model.Id">Delete</a>
+            }
             <a class="btn btn-success btn-sm" asp-controller="Cart" asp-action="AddToCart"
                asp-route-id="@Model.Id">Add to Cart</a>
         </div>

@@ -1,4 +1,4 @@
-﻿using Formula1Store.ViewModels.Category;
+﻿using Formula1Store.Core.Models.Category;
 
 namespace Formula1Store.Core.Contracts
 {

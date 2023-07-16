@@ -1,5 +1,5 @@
-﻿using Formula1Store.Domain.Models;
-using Formula1Store.ViewModels.Account;
+﻿using Formula1Store.Core.Models.User;
+using Formula1Store.Domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

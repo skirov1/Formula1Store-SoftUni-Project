@@ -4,6 +4,7 @@ using Formula1Store.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Formula1Store.Infrastructure.Migrations
 {
     [DbContext(typeof(Formula1StoreDbContext))]
-    partial class Formula1StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230715162341_AddedAttributes")]
+    partial class AddedAttributes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,9 +121,6 @@ namespace Formula1Store.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -144,7 +143,6 @@ namespace Formula1Store.Infrastructure.Migrations
                             CategoryId = 1,
                             Description = "Show your love and support for the Scuderia Ferrari F1 team with the official Replica range. This classic tee has team and sponsor details for an authentic trackside look that you can wear anywhere from the circuit to the street.",
                             ImageUrl = "https://images.footballfanatics.com/scuderia-ferrari/scuderia-ferrari-2023-team-t-shirt_ss4_p-13368608+u-ya0zcr5gjt4kzyrcb08m+v-f28b0bcee21c492bbbd3d4f328095725.jpg?_hv=2&w=900",
-                            IsActive = true,
                             Name = "Scuderia Ferrari 2023 Team T-Shirt",
                             Price = 49.50m
                         },
@@ -154,7 +152,6 @@ namespace Formula1Store.Infrastructure.Migrations
                             CategoryId = 1,
                             Description = "Show your love and support for the Scuderia Ferrari F1 team with the official Replica range. Combining Sainz's car number on the back with classic team and sponsor styling for an iconic F1 look, this is a garment that should be in every Scuderia Ferrari fan's collection.",
                             ImageUrl = "https://images.footballfanatics.com/scuderia-ferrari/scuderia-ferrari-2023-team-carlos-sainz-t-shirt_ss4_p-13368597+u-fam96qn766o6oy69jf7d+v-c1f28d272ac34896880395300bce9652.jpg?_hv=2&w=900",
-                            IsActive = true,
                             Name = "Scuderia Ferrari 2023 Team Carlos Sainz T-Shirt",
                             Price = 53.25m
                         },
@@ -164,7 +161,6 @@ namespace Formula1Store.Infrastructure.Migrations
                             CategoryId = 1,
                             Description = "Take your Scuderia Ferrari passion from the track to the streets with the official Puma collection. This classic tee features a stylized Scuderia Ferrari artwork print on the back. The Scuderia Ferrari name is also featured on a badge on the chest, and the Ferrari and Puma logos are printed on the sleeves. The classic fit makes this ideal for working into any outfit.",
                             ImageUrl = "https://images.footballfanatics.com/scuderia-ferrari/scuderia-ferrari-race-graphic-t-shirt-by-puma-black_ss4_p-13345747+u-2625jalyqhcpob0ff9dh+v-0aa98a1cc1c44b3e82d146c4500fac20.jpg?_hv=2&w=900",
-                            IsActive = true,
                             Name = "Scuderia Ferrari Race Graphic T-Shirt",
                             Price = 35.25m
                         });
@@ -309,9 +305,9 @@ namespace Formula1Store.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b3f5f84c-2d4e-4eb7-80ab-38732fbc7acb",
+                            Id = "5121aae5-79d5-4879-82fc-8b78d47f202e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ccb3ae5-986b-4821-9884-6fb998b92eee",
+                            ConcurrencyStamp = "d951db03-f7e4-4e14-b3d6-ea26a0dfd07d",
                             Email = "admin@email.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -319,17 +315,17 @@ namespace Formula1Store.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEJdZOZptRgZDK8F1tatZItrdAlD4NfaFCZfYnR1vLMScHaaiUnXYnRz65IXGJjVFGg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBGcbnruGb3QiY2meEr2df2+SEeEsVH1yRdd1AMBe3tDR1dt/sYEwOLtBKyGuLgzyQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5aeb62cc-9fbf-468a-bde9-cbee46bb8c42",
+                            SecurityStamp = "d6a587e8-5741-4396-8e16-64885af1c680",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
                         new
                         {
-                            Id = "2cb0c3a8-a50f-45fe-9d3d-aeb31d3100c9",
+                            Id = "5f1f05a6-c846-431b-bfd5-d6607cb33cec",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e4c48adb-4a79-43ee-a990-6ab9d4cd6e21",
+                            ConcurrencyStamp = "997693c2-7e51-4479-8dae-8f5f0085e44e",
                             Email = "kiro@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Kiril",
@@ -337,9 +333,9 @@ namespace Formula1Store.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KIRO@GMAIL.COM",
                             NormalizedUserName = "KIRO",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDskKZS2y8gvJhf/7qLegScu8VMIO60Aae70YeEYtPtZg3XcPpfArgHkH+VHqCRbfw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECe0Eup43pZ68KlTmeiKPeVXubu6dJ+iTlm+d/Safr9MZYVUKLZaj3C7VNcQH/KPzg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5daab961-e951-405f-9d96-8ce38736a4a9",
+                            SecurityStamp = "3cb3dbba-c83f-439c-a62a-eeb73313fea0",
                             TwoFactorEnabled = false,
                             UserName = "Kiro"
                         });

@@ -1,7 +1,9 @@
 using Formula1Store.Core.Extensions;
 using Formula1Store.Domain.Models;
 using Formula1Store.Infrastructure.Data;
+using HouseRentingSystem.ModelBinders;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,7 +31,12 @@ builder.Services.AddDefaultIdentity<User>(options =>
 .AddEntityFrameworkStores<Formula1StoreDbContext>();
 
 builder.Services.AddApplicationServices();
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddMvcOptions(options =>
+     {
+         options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+         options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
+     });
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/User/Login";

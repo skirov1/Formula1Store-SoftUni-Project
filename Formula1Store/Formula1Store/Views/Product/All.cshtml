@@ -1,14 +1,13 @@
 ﻿@model AllProductsQueryModel
 
 @{
-    ViewBag.Title = "Products";
+    ViewBag.Title = "All Products";
 }
 
 <form method="get">
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-3">
-                <h3>Categories</h3>
+    <div class="row text-center">
+        <div class="form-group col-md-3 d-flex justify-content-between">
+            <div class="form-group">
                 <label asp-for="Category"></label>
                 <select asp-for="Category" class="form-control">
                     <option value="">All</option>
@@ -18,38 +17,48 @@
                     }
                 </select>
             </div>
-            <div id="product-list" class="col-lg-9 row">
-                @foreach (var product in Model.Products)
-                {
-                    <div class="col-lg-4 mb-4">
-                        <partial name="Partials/_ProductPartial" model="product" />
-                    </div>
-                }
+        </div>
+
+        <div class="form-group col-md-3">
+            <label asp-for="SearchTerm">Search</label>
+            <input asp-for="SearchTerm" class="form-control" placeholder="Search...">
+        </div>
+
+        <div class="form-group col-md-3">
+            <div class="form-group">
+                <label asp-for="Sorting"></label>
+                <select asp-for="Sorting" class="form-control">
+                    <option value="0">Lowest price</option>
+                    <option value="1">Highest price</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group mt-4 p-2">
+                <input type="submit" value="Search" class="btn btn-primary" />
             </div>
         </div>
     </div>
 </form>
 
+@if (!Model.Products.Any())
+{
+    <div class="container text-center">
+        <h2 class="text-center">No products found!</h2>
+    </div>
+}
+
+<div id="product-list" class="row col-lg-12 align-content-center mb-5">
+    @foreach (var product in Model.Products)
+    {
+        <div class="col-lg-4 mb-4">
+            <partial name="Partials/_ProductPartial" model="product" />
+        </div>
+    }
+</div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-@*<script>
-    $(document).ready(function () {
-        $("#category-list li").on("click", function () {
-            $("#category-list li").removeClass("active");
-            $(this).addClass("active");
-            var selectedCategory = $(this).data("category");
-            filterProducts(selectedCategory);
-        });
-
-        function filterProducts(category) {
-            debugger;
-            $("#product-list .col-lg-4").hide();
-            if (category === "all") {
-                $("#product-list .col-lg-4").show();
-            } else {
-                $("#product-list .col-lg-4[data-category='" + category + "']").show();
-            }
-        }
-    });
-</script>*@
