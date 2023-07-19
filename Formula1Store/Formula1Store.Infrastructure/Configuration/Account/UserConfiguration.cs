@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Formula1Store.Infrastructure.Configuration
+namespace Formula1Store.Infrastructure.Configuration.Account
 {
     public class UserConfiguration : IEntityTypeConfiguration<User>
     {
@@ -19,7 +19,7 @@ namespace Formula1Store.Infrastructure.Configuration
 
             var user = new User()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "c3d5a085-6769-4739-9ae6-c5155c996db2",
                 FirstName = "Admin",
                 LastName = "Admin",
                 UserName = "Admin",
@@ -35,7 +35,7 @@ namespace Formula1Store.Infrastructure.Configuration
 
             user = new User()
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "1566b311-5fd9-4d09-8cd7-3b126ffcf80e",
                 FirstName = "Kiril",
                 LastName = "Atanasov",
                 UserName = "Kiro",

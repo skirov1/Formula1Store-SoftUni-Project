@@ -11,7 +11,6 @@ namespace Formula1Store.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
-        private readonly RoleManager<IdentityRole> roleManager;
 
         public UserController(UserManager<User> _userManager,
             SignInManager<User> _signInManager,
@@ -19,7 +18,6 @@ namespace Formula1Store.Controllers
         {
             userManager = _userManager;
             signInManager = _signInManager;
-            roleManager = _roleManager;
         }
 
         [HttpGet]
@@ -49,6 +47,8 @@ namespace Formula1Store.Controllers
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
+
+            await this.userManager.AddToRoleAsync(user, "User");
 
             if (result.Succeeded)
             {

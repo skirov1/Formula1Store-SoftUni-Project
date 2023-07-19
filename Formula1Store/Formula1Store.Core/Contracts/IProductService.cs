@@ -6,11 +6,13 @@ namespace Formula1Store.Core.Contracts
 {
     public interface IProductService
     {
+        Task<IEnumerable<ProductHomeModel>> LastThreeProducts();
+
         Task<AllProductsQueryModel> GetAllAsync(string? category = null,
             int currentPage = 1,
             string? searchTerm = null,
             ProductSorting sorting = ProductSorting.LowestPrice,
-            int productsPerPage = 5);
+            int productsPerPage = 6);
 
         Task<IEnumerable<ProductCategoryModel>> AllCategories();
 

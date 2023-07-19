@@ -1,5 +1,8 @@
-﻿@{
+﻿@model IEnumerable<ProductHomeModel>
+
+@{
     ViewData["Title"] = "F1 Merch Store";
+    bool first = true;
 }
 
 <style>
@@ -29,39 +32,35 @@
             <img src="/img/F1-logo.png" alt="Formula 1 Banner" class="img-fluid">
         </div>
     </div>
+</div>
 
-    <div class="row mt-5">
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <img src="https://example.com/category1.jpg" class="card-img-top" alt="Category 1">
-                <div class="card-body">
-                    <h5 class="card-title">Category 1</h5>
-                    <p class="card-text">Explore our collection of Category 1 merchandise.</p>
-                    <a href="/shop/category1" class="btn btn-primary">View Products</a>
+<div id="carouselExampleControls" class="align-content-center carousel slide mb-5" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        @foreach (var product in Model)
+        {
+            <div class="carousel-item @(first ? "active" : string.Empty)">
+
+                <img class=" d-block w-50" style="height:500px"
+                     src="@product.ImageUrl" alt="@product.Name">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>
+                        <a class="btn btn-primary" asp-controller="Product" asp-action="Details"
+                           asp-route-id="@product.Id"> @product.Name</a>
+                    </h5>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <img src="https://example.com/category2.jpg" class="card-img-top" alt="Category 2">
-                <div class="card-body">
-                    <h5 class="card-title">Category 2</h5>
-                    <p class="card-text">Discover our range of Category 2 products.</p>
-                    <a href="/shop/category2" class="btn btn-primary">View Products</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 mb-4">
-            <div class="card">
-                <img src="https://example.com/category3.jpg" class="card-img-top" alt="Category 3">
-                <div class="card-body">
-                    <h5 class="card-title">Category 3</h5>
-                    <p class="card-text">Shop the latest Category 3 merchandise.</p>
-                    <a href="/shop/category3" class="btn btn-primary">View Products</a>
-                </div>
-            </div>
-        </div>
+
+            first = false;
+        }
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

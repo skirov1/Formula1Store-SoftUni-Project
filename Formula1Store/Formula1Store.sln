@@ -5,13 +5,11 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formula1Store", "Formula1Store\Formula1Store.csproj", "{263EBF23-96A1-4999-8E1A-E626CB1CDF5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formula1Store.Core", "Formula1Store.Core\Formula1Store.Core.csproj", "{B8DD7E30-B80B-4280-96C1-AE72312C1F1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formula1Store.Core", "Formula1Store.Core\Formula1Store.Core.csproj", "{B8DD7E30-B80B-4280-96C1-AE72312C1F1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formula1Store.Domain", "Formula1Store.Domain\Formula1Store.Domain.csproj", "{8F8F3313-BFC9-4F84-BCF7-A7267D79F1C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formula1Store.Domain", "Formula1Store.Domain\Formula1Store.Domain.csproj", "{8F8F3313-BFC9-4F84-BCF7-A7267D79F1C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formula1Store.Infrastructure", "Formula1Store.Infrastructure\Formula1Store.Infrastructure.csproj", "{50FCDBC6-C86D-4C47-ABE6-745AE2612052}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Formula1Store.ViewModels", "Formula1Store.ViewModels\Formula1Store.ViewModels.csproj", "{C3223F03-FB7D-4929-8C9F-798DC18FF279}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Formula1Store.Infrastructure", "Formula1Store.Infrastructure\Formula1Store.Infrastructure.csproj", "{50FCDBC6-C86D-4C47-ABE6-745AE2612052}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +33,6 @@ Global
 		{50FCDBC6-C86D-4C47-ABE6-745AE2612052}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50FCDBC6-C86D-4C47-ABE6-745AE2612052}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50FCDBC6-C86D-4C47-ABE6-745AE2612052}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3223F03-FB7D-4929-8C9F-798DC18FF279}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3223F03-FB7D-4929-8C9F-798DC18FF279}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3223F03-FB7D-4929-8C9F-798DC18FF279}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3223F03-FB7D-4929-8C9F-798DC18FF279}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

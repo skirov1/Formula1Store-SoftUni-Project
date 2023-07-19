@@ -66,7 +66,7 @@ namespace Formula1Store.Core.Services
                 .ToListAsync();
         }
 
-        public async Task<AllProductsQueryModel> GetAllAsync(string? category = null, int currentPage = 1, string? searchTerm = null, ProductSorting sorting = ProductSorting.LowestPrice, int productsPerPage = 5)
+        public async Task<AllProductsQueryModel> GetAllAsync(string? category = null, int currentPage = 1, string? searchTerm = null, ProductSorting sorting = ProductSorting.LowestPrice, int productsPerPage = 6)
         {
             var result = new AllProductsQueryModel();
             var products = repo.AllReadonly<Product>()
@@ -167,6 +167,22 @@ namespace Formula1Store.Core.Services
         {
             return await repo.AllReadonly<Category>()
                 .AnyAsync(c => c.Id == categoryId);
+        }
+
+        public async Task<IEnumerable<ProductHomeModel>> LastThreeProducts()
+        {
+            return await repo.AllReadonly<Product>()
+               .Where(p => p.IsActive)
+               .OrderByDescending(p => p.Id)
+               .Select(p => new ProductHomeModel()
+               {
+                   Id = p.Id,
+                   Name = p.Name,
+                   ImageUrl = p.ImageUrl,
+                   Price = p.Price
+               })
+               .Take(3)
+               .ToListAsync();
         }
     }
 }

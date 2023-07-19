@@ -5,7 +5,7 @@ namespace Formula1Store.Core.Models.Product
 {
     public class AllProductsQueryModel
     {
-        public const int ProductsPerPage = 5;
+        public const int ProductsPerPage = 6;
 
         public string? Category { get; set; }
 

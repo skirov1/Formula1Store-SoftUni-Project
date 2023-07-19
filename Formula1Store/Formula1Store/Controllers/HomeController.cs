@@ -1,4 +1,5 @@
-﻿using Formula1Store.Core.Models.Common;
+﻿using Formula1Store.Core.Contracts;
+using Formula1Store.Core.Models.Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +7,27 @@ namespace Formula1Store.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IProductService productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ILogger logger;
+
+        public HomeController(
+            ILogger<HomeController> _logger,
+            IProductService _productService)
         {
-            _logger = logger;
+            logger = _logger;
+            productService = _productService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            //if (User.IsInRole(AdminRolleName))
+            //{
+            //    return RedirectToAction("Index", "Admin", new { area = "Admin" });
+            //}
+            var model = await productService.LastThreeProducts();
+
+            return View(model);
         }
 
         public IActionResult Privacy()
