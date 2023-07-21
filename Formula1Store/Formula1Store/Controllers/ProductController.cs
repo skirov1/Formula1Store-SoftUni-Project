@@ -16,6 +16,7 @@ namespace Formula1Store.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add()
         {
             var model = new ProductModel()
@@ -27,17 +28,13 @@ namespace Formula1Store.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(ProductModel model)
         {
-            //if (!(this.User.IsInRole(AdminRoleName)))
-            //{
-            //    return RedirectToAction("AccessDenied", "Error");
-            //}
-
-            //if ((await productService.CategoryExists(model.CategoryId)) == false)
-            //{
-            //    ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist!");
-            //}
+            if ((await productService.CategoryExists(model.CategoryId)) == false)
+            {
+                ModelState.AddModelError(nameof(model.CategoryId), "Category does not exist!");
+            }
 
             if (!ModelState.IsValid)
             {
@@ -70,6 +67,7 @@ namespace Formula1Store.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Details(int id)
         {
             var model = await productService.ProductDetails(id);
@@ -77,6 +75,7 @@ namespace Formula1Store.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
             if ((await productService.Exists(id)) == false)
@@ -102,6 +101,7 @@ namespace Formula1Store.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, ProductModel model)
         {
 
@@ -112,11 +112,6 @@ namespace Formula1Store.Controllers
 
                 return View(model);
             }
-
-            //if (!(this.User.IsInRole(AdminRoleName)))
-            //{
-            //    return RedirectToAction("AccessDenied", "Error");
-            //}
 
             if ((await productService.CategoryExists(model.CategoryId)) == false)
             {
@@ -139,6 +134,7 @@ namespace Formula1Store.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if ((await productService.Exists(id)) == false)
@@ -159,6 +155,7 @@ namespace Formula1Store.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id, ProductDetailsModel model)
         {
             if ((await productService.Exists(id)) == false)

@@ -20,8 +20,10 @@
         }
         @if (this.User.Identity.IsAuthenticated)
         {
-            <a class="btn btn-success btn-sm" asp-controller="Cart" asp-action="AddToCart"
-               asp-route-id="@Model.Id">Add to Cart</a>
+            <form class="input-group-sm" asp-area="" asp-controller="Cart"
+                  asp-action="AddToCart" asp-route-id="@Model.Id" method="post">
+                <input class="btn btn-success" type="submit" value="Add To Cart" />
+            </form>
         }
     </div>
 </div>

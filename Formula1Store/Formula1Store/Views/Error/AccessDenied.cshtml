@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Denied</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .jumbotron {
+            background-color: #e9ecef;
+        }
+
+            .jumbotron h1 {
+                font-size: 48px;
+                color: #dc3545;
+                font-weight: bold;
+            }
+
+            .jumbotron p {
+                font-size: 24px;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="jumbotron text-center">
+            <h1 class="display-4">Access Denied</h1>
+            <p class="lead">You don't have permission to access this page.</p>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and jQuery links here -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

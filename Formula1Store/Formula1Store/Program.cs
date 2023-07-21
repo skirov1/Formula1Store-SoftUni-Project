@@ -40,7 +40,7 @@ builder.Services.AddControllersWithViews()
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/User/Login";
-    options.LoginPath = "/User/Logout";
+    options.AccessDeniedPath = "/Error/AccessDenied";
 });
 
 var app = builder.Build();

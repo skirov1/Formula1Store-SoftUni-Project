@@ -1,0 +1,63 @@
+﻿@model IndexViewModel
+
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Shopping Cart</h2>
+    <form asp-action="UpdateCart" asp-controller="Cart" method="post">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Product Image</th>
+                    <th>Product Price</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            @if (Model.UserCart.CartItems != null && Model.UserCart.CartItems.Any())
+            {
+                <tbody>
+                    @for (int i = 0; i < Model.UserCart.CartItems.Count(); i++)
+                    {
+                        <tr>
+                            <td>@Model.UserCart.CartItems[i].ProductName</td>
+                            <td><img class="img-fluid rounded-3" style="width: 65px;" src="@Model.UserCart.CartItems[i].ImageUrl" alt="@Model.UserCart.CartItems[i].ProductName" class="cart-img"></td>
+                            <td>$@Model.UserCart.CartItems[i].Price</td>
+                            <td>
+                                <input class="inputSize" type="hidden" name="@("productAndQuantity[" + i +"].Key")" value="@Model.UserCart.CartItems[i].Id" />
+                                <input class="inputSize" type="number" name="@("productAndQuantity[" + i +"].Value")" value="@Model.UserCart.CartItems[i].Quantity" />
+                            </td>
+                            <td class="total-price">
+                                $@(
+                                   Model.UserCart.CartItems[i].Quantity * @Model.UserCart.CartItems[i].Price
+                                   )
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            }
+            else
+            {
+                <p>There are no products in the shopping cart yet!</p>
+            }
+            <tfoot>
+                <tr class="total-row">
+                    <td colspan="4" class="text-right">Total:</td>
+                    <td id="cart-total">$@Model.TotalPrice()</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="buttonContainer" style="display: flex; justify-content: space-between">
+            <button type="submit" class="btn btn-primary">Update Cart</button>
+
+            <a asp-controller="Order"
+               asp-action="CreateOrder" button type="submit" class="btn btn-primary">
+                Go to Checkout
+            </a>
+        </div>
+    </form>
+</div>

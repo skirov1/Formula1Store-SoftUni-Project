@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Formula1Store.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <header>
@@ -24,6 +25,10 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="All">Products</a>
                         </li>
                     </ul>
+                    @if (this.User.Identity.IsAuthenticated)
+                    {
+                        <a asp-controller="Cart" asp-action="Index" style="font-size:24px" class="mr-2"><i class="fa fa-shopping-cart"></i></a>
+                    }
                     <partial name="_LoginPartial" />
                 </div>
             </div>
