@@ -67,7 +67,6 @@ namespace Formula1Store.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "User")]
         public async Task<IActionResult> Details(int id)
         {
             var model = await productService.ProductDetails(id);

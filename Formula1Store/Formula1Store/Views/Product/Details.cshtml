@@ -45,7 +45,7 @@
             <p class="product-description">@Model.Description</p>
             <p class="product-price">Price: $@String.Format("{0:f2}", Model.Price)</p>
             <p class="product-category">Category: @Model.Category</p>
-            @if (this.User.Identity.IsAuthenticated)
+            @if (this.User.IsInRole("Admin"))
             {
                 <a class="btn btn-warning" asp-controller="Product" asp-action="Edit"
                    asp-route-id="@Model.Id">Edit</a>
