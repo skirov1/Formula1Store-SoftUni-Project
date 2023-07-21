@@ -3,7 +3,8 @@
 @{
     ViewBag.Title = "Shopping Cart";
 }
-
+@if (Model.UserCart.CartItems != null && Model.UserCart.CartItems.Any())
+            {
 <div class="container mt-5">
     <h2 class="mb-4">Shopping Cart</h2>
     <form asp-action="UpdateCart" asp-controller="Cart" method="post">
@@ -17,8 +18,6 @@
                     <th>Total Price</th>
                 </tr>
             </thead>
-            @if (Model.UserCart.CartItems != null && Model.UserCart.CartItems.Any())
-            {
                 <tbody>
                     @for (int i = 0; i < Model.UserCart.CartItems.Count(); i++)
                     {
@@ -38,11 +37,6 @@
                         </tr>
                     }
                 </tbody>
-            }
-            else
-            {
-                <p>There are no products in the shopping cart yet!</p>
-            }
             <tfoot>
                 <tr class="total-row">
                     <td colspan="4" class="text-right">Total:</td>
@@ -61,3 +55,8 @@
         </div>
     </form>
 </div>
+}
+else
+{
+    <p>There are no products in the shopping cart yet!</p>
+}

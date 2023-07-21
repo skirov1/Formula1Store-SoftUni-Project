@@ -18,7 +18,7 @@ namespace Formula1Store.Core.Services
         public async Task AddToCart(string? userId, int productId)
         {
             var cart = await repo.All<ShoppingCart>()
-                .Where(sc => sc.CustomerId == userId)
+                .Where(sc => sc.CustomerId == userId && sc.IsActive)
                 .FirstOrDefaultAsync();
 
             if (cart == null)
@@ -45,7 +45,7 @@ namespace Formula1Store.Core.Services
             await repo.SaveChangesAsync();
 
             return await repo.All<ShoppingCart>()
-                .Where(sc => sc.CustomerId == userId)
+                .Where(sc => sc.CustomerId == userId && sc.IsActive)
                 .Select(sc => new ShoppingCartDto()
                 {
                     CustomerId = sc.CustomerId,
@@ -66,7 +66,7 @@ namespace Formula1Store.Core.Services
         {
             var cart = await repo.All<ShoppingCart>()
                 .Include(sc => sc.CartProducts)
-                .Where(sc => sc.CustomerId == userId)
+                .Where(sc => sc.CustomerId == userId && sc.IsActive)
                 .Select(sc => new ShoppingCartDto()
                 {
                     CustomerId = sc.CustomerId,

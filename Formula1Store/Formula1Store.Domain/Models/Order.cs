@@ -7,13 +7,16 @@ namespace Formula1Store.Domain.Models
 {
     public class Order
     {
-        public Order()
+        public Order(string customerId)
         {
+            this.CustomerId = customerId;
             this.Products = new List<ShoppingCartItem>();
         }
 
         [Key]
         public int Id { get; set; }
+
+        public string OrderNumber { get; set; }
 
         public string CustomerId { get; set; } = null!;
 

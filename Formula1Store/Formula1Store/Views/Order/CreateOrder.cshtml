@@ -1,0 +1,65 @@
+﻿@model CheckoutViewModel
+@{
+    ViewBag.Title = "Order Checkout";
+}
+
+<section class="h-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body p-4">
+                        <div class="row" style="display: flex; justify-content: center">
+                            <div class="col-lg-5">
+                                <div class="card bg-primary text-white rounded-3">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-4">
+                                            <h5 class="mb-0">Orders details</h5>
+                                        </div>
+                                        <form asp-action="Checkout" asp-controller="Order" method="post" class="mt-4">
+                                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                            <div class="row mb-4">
+                                                <div class="form-outline form-white mb-4">
+                                                    <label class="form-label" for="typeExp">Full Name</label>
+                                                    <span asp-validation-for="@Model.UserFullName" class="text-danger"></span>
+                                                    <input asp-for="UserFullName" type="text" id="userFullName" class="form-control form-control-lg"
+                                                           placeholder="Full Name" size="7" minlength="4" maxlength="100" />
+                                                </div>
+
+                                                <div class="form-outline form-white mb-4">
+                                                    <label class="form-label" for="typeText">Phone Number</label>
+                                                    <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+                                                    <input asp-for="PhoneNumber" type="text" id="phoneNumber" class="form-control form-control-lg" siez="17"
+                                                           placeholder="+359 XX XXX XXXX" maxlength="10" />
+                                                </div>
+
+                                                <div class="form-outline form-white mb-4">
+                                                    <label class="form-label" for="typeText">Delivery Address</label>
+                                                    <span asp-validation-for="@Model.DeliveryAddress" class="text-danger"></span>
+                                                    <input asp-for="DeliveryAddress" type="text" id="deliveryAddress" class="form-control form-control-lg" siez="17"
+                                                           placeholder="721 Broadway" />
+                                                </div>
+                                            </div>
+
+                                            <hr class="my-4">
+
+                                            <div class="d-flex justify-content-between mb-4">
+                                                <p class="mb-2">Total Price</p>
+                                                <p class="mb-2">$@Model.TotalPrice()</p>
+                                            </div>
+                                            <button type="submit" class="btn btn-info w-100">Place Order</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

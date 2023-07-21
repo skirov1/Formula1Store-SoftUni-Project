@@ -12,6 +12,7 @@ namespace Formula1Store.Core.Extensions
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IOrderService, OrderService>();
 
             return services;
         }

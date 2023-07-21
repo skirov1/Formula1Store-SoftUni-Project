@@ -4,6 +4,7 @@ using Formula1Store.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Formula1Store.Infrastructure.Migrations
 {
     [DbContext(typeof(Formula1StoreDbContext))]
-    partial class Formula1StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230721131346_EditedOrderEntity")]
+    partial class EditedOrderEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -186,9 +188,6 @@ namespace Formula1Store.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
@@ -318,7 +317,7 @@ namespace Formula1Store.Infrastructure.Migrations
                         {
                             Id = "c3d5a085-6769-4739-9ae6-c5155c996db2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "21737a87-6e81-4829-9426-2319de218f5f",
+                            ConcurrencyStamp = "8d9ed7b5-4d55-4f92-b24f-f8cdb7efb934",
                             Email = "admin@email.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -326,9 +325,9 @@ namespace Formula1Store.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEHeIk/IL97GJFQYZLx/cFnXYfjzLhWXdr9EYH28A1G6jZIQWx3ABSgBl+2Hv4tT7tA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMAcy9XIh197OPYxWH8QJ9nLX+46xHuxEUgj6tYnQz14yC0lg8LTqzsW2iSLXylNZQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ce09f4cf-ba7c-49e9-a10f-3f7e33405852",
+                            SecurityStamp = "d1c157c4-4630-4916-9f7a-b94f1d3d9988",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         },
@@ -336,7 +335,7 @@ namespace Formula1Store.Infrastructure.Migrations
                         {
                             Id = "1566b311-5fd9-4d09-8cd7-3b126ffcf80e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "28852dd0-5d13-4f30-9546-30882b5363db",
+                            ConcurrencyStamp = "397616c0-6b42-46fe-b16d-53f4b85fe6fd",
                             Email = "kiro@gmail.com",
                             EmailConfirmed = false,
                             FirstName = "Kiril",
@@ -344,9 +343,9 @@ namespace Formula1Store.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "KIRO@GMAIL.COM",
                             NormalizedUserName = "KIRO",
-                            PasswordHash = "AQAAAAEAACcQAAAAENjgwJCrMOEs021ny6XQufiJ4yBd0qNH1UnMK2j7GIJ+ygIiknBJUzi0bXHAIWcShA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENJBxhmUYrtAHlWlbINk/krzZrOYNsP515PDEzyYWEJmEyOMeawjlJPa2dVdtLk/FQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "a8347c67-be01-4dd3-9742-cb6785b43d5a",
+                            SecurityStamp = "8d54d0fd-56eb-4b9c-a9e9-2ef64d305d65",
                             TwoFactorEnabled = false,
                             UserName = "Kiro"
                         });
@@ -397,14 +396,14 @@ namespace Formula1Store.Infrastructure.Migrations
                         new
                         {
                             Id = "9a13d4a4-ac13-41fa-9de1-9de5331984d5",
-                            ConcurrencyStamp = "d7fdcba3-ec94-49be-acd8-2623740f5bdf",
+                            ConcurrencyStamp = "492fea4c-f9b1-45b4-9eca-fab2056469db",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "e7a7d258-3928-49d8-b91b-3a3c5683e124",
-                            ConcurrencyStamp = "e486eabd-4ab2-4f7b-b11a-6f4e027bb6d0",
+                            ConcurrencyStamp = "707a1e6e-9e51-4ffc-a477-af6ce76b6141",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });

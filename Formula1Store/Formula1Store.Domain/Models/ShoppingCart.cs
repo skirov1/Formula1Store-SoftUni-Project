@@ -21,6 +21,8 @@ namespace Formula1Store.Domain.Models
 
         public List<ShoppingCartItem> CartProducts { get; set; } = new List<ShoppingCartItem>();
 
+        public bool IsActive { get; set; } = true;
+
         public void AddItem(Product product, int quantity = 1)
         {
             if (!CartProducts.Any(i => i.ProductName == product.Name))
