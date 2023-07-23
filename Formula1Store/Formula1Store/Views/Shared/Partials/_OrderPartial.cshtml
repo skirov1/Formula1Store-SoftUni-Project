@@ -1,5 +1,9 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model OrderServiceModel
+
+<div class="card w-100 mb-1">
+    <div class="card-body">
+        <h5 class="card-title">Order Number: @Model.OrderNumber</h5>
+        <p class="card-text">Order Date: @Model.OrderDate.Substring(0,19)</p>
+        <a asp-controller="Order" asp-action="OrderDetails" asp-route-id="@Model.OrderId" class="btn btn-primary">Order Details</a>
+    </div>
+</div>

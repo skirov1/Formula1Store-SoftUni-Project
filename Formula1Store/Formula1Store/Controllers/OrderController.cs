@@ -16,6 +16,18 @@ namespace Formula1Store.Controllers
             this.orderService = _orderService;
         }
 
+        public async Task<IActionResult> All(OrdersViewModel model)
+        {
+            var userId = HttpContext.GetUserId();
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            model = await orderService.AllOrders(userId);
+
+            return View(model);
+        }
+
         public async Task<IActionResult> CreateOrder()
         {
             var userId = HttpContext.GetUserId();

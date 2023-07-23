@@ -7,15 +7,16 @@
     <main role="main" class="pb-3">
         <h3>Orders</h3>
         <hr />
-       @if (Model.Orders.Count > 0)
+        @if (Model.Orders.Count > 0)
         {
             @foreach (var item in Model.Orders)
             {
-                <partial name="_OrderPartial" model="@item" />
+                <partial name="Partials/_OrderPartial" model="@item" />
             }
         }
-        else{
-            <p>There are no orders in the profil yet!</p>
+        else
+        {
+            <p>You don't have any orders yet!</p>
         }
         <hr />
     </main>
