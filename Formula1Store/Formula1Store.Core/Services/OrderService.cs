@@ -32,8 +32,7 @@ namespace Formula1Store.Core.Services
                     DeliveryAddress = deliveryAddress,
                     UserFullName = fullName,
                     UserPhoneNumber = phoneNumber,
-                    OrderNumber = Guid.NewGuid().ToString(),
-                    OrderStatus = OrderStatus.New
+                    OrderNumber = Guid.NewGuid().ToString()
                 });
                 cart.IsActive = false;
 

@@ -37,9 +37,6 @@ namespace Formula1Store.Domain.Models
 
         public ICollection<ShoppingCartItem> Products { get; set; }
 
-        [Required]
-        public OrderStatus OrderStatus { get; set; }
-
         public decimal TotalOrderPrice()
         {
             var total = 0m;
