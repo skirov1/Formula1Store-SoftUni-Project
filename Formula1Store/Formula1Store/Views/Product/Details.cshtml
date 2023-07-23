@@ -47,13 +47,18 @@
             <p class="product-category">Category: @Model.Category</p>
             @if (this.User.IsInRole("Admin"))
             {
-                <a class="btn btn-warning" asp-controller="Product" asp-action="Edit"
+                <a class="mb-2 btn btn-warning" asp-controller="Product" asp-action="Edit"
                    asp-route-id="@Model.Id">Edit</a>
-                <a class="ml-2 btn btn-danger" asp-controller="Product" asp-action="Delete"
+                <a class="ml-2 mb-2 btn btn-danger" asp-controller="Product" asp-action="Delete"
                    asp-route-id="@Model.Id">Delete</a>
             }
-            <a class="btn btn-success btn-sm" asp-controller="Cart" asp-action="AddToCart"
-               asp-route-id="@Model.Id">Add to Cart</a>
+            @if (this.User.Identity.IsAuthenticated)
+            {
+                <form class="input-group-sm mt" asp-area="" asp-controller="Cart"
+                      asp-action="AddToCart" asp-route-id="@Model.Id" method="post">
+                    <input class="btn btn-success" type="submit" value="Add To Cart" />
+                </form>
+            }
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 ﻿using Formula1Store.Core.Contracts;
 using Formula1Store.Core.Repositories;
+using Formula1Store.Domain.Enums;
 using Formula1Store.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,7 +32,8 @@ namespace Formula1Store.Core.Services
                     DeliveryAddress = deliveryAddress,
                     UserFullName = fullName,
                     UserPhoneNumber = phoneNumber,
-                    OrderNumber = Guid.NewGuid().ToString()
+                    OrderNumber = Guid.NewGuid().ToString(),
+                    OrderStatus = OrderStatus.New
                 });
                 cart.IsActive = false;
 
