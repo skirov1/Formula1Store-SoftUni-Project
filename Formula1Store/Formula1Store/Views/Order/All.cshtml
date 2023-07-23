@@ -1,0 +1,22 @@
+﻿@model OrdersViewModel
+@{
+    ViewBag.Title = "Orders";
+}
+
+<div class="container">
+    <main role="main" class="pb-3">
+        <h3>Orders</h3>
+        <hr />
+       @if (Model.Orders.Count > 0)
+        {
+            @foreach (var item in Model.Orders)
+            {
+                <partial name="_OrderPartial" model="@item" />
+            }
+        }
+        else{
+            <p>There are no orders in the profil yet!</p>
+        }
+        <hr />
+    </main>
+</div>
