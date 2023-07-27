@@ -315,5 +315,11 @@ namespace Formula1Store.UnitTests
 
             Assert.That(initialProductsCount + 1, Is.EqualTo(repo.AllReadonly<Product>().Where(x => x.IsActive).Count()));
         }
+
+        [TearDown]
+        public void TearDown()
+        {
+            context.Dispose();
+        }
     }
 }
