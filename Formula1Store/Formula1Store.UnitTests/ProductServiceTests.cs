@@ -82,31 +82,6 @@ namespace Formula1Store.UnitTests
         }
 
         [Test]
-        public async Task TestCreateProduct()
-        {
-            var repo = new Repository(context);
-            var initialProductsCount = repo.AllReadonly<Product>().Count();
-
-            var loggerMock = new Mock<ILogger<ProductService>>();
-            logger = loggerMock.Object;
-
-            productService = new ProductService(repo, logger);
-            var model = new ProductModel()
-            {
-                Id = 1,
-                Name = "Test product 1",
-                Description = "Test product 1 description",
-                ImageUrl = "",
-                Price = 22.50m,
-                CategoryId = 1,
-            };
-
-            await productService.Create(model);
-
-            Assert.That(initialProductsCount + 1, Is.EqualTo(repo.AllReadonly<Product>().Count()));
-        }
-
-        [Test]
         public async Task TestAllCategories()
         {
             var repo = new Repository(context);
@@ -149,6 +124,31 @@ namespace Formula1Store.UnitTests
             Assert.That(true, Is.EqualTo(await productService.CategoryExists(10)));
             Assert.That(true, Is.EqualTo(await productService.CategoryExists(11)));
             Assert.That(false, Is.EqualTo(await productService.CategoryExists(12)));
+        }  
+
+        [Test]
+        public async Task TestCreateProduct()
+        {
+            var repo = new Repository(context);
+            var initialProductsCount = repo.AllReadonly<Product>().Count();
+
+            var loggerMock = new Mock<ILogger<ProductService>>();
+            logger = loggerMock.Object;
+
+            productService = new ProductService(repo, logger);
+            var model = new ProductModel()
+            {
+                Id = 1,
+                Name = "Test product 1",
+                Description = "Test product 1 description",
+                ImageUrl = "",
+                Price = 22.50m,
+                CategoryId = 1,
+            };
+
+            await productService.Create(model);
+
+            Assert.That(initialProductsCount + 1, Is.EqualTo(repo.AllReadonly<Product>().Count()));
         }
 
         [Test]
@@ -184,7 +184,7 @@ namespace Formula1Store.UnitTests
 
             await repo.AddRangeAsync(new List<Product>()
             {
-                new Product() { Id = 5, Name = "Test product 1", Description = "Test product 1 description", ImageUrl = "", Price = 50, CategoryId = 1, IsActive = true },
+                new Product() { Id = 11, Name = "Test product 1", Description = "Test product 1 description", ImageUrl = "", Price = 50, CategoryId = 1, IsActive = true },
                 new Product() { Id = 12, Name = "Test product 2", Description = "Test product 2 description", ImageUrl = "", Price = 50, CategoryId = 2, IsActive = true },
                 new Product() { Id = 13, Name = "Test product 3", Description = "Test product 3 description", ImageUrl = "", Price = 50, CategoryId = 3, IsActive = false }
             });
@@ -192,7 +192,7 @@ namespace Formula1Store.UnitTests
 
             var productDetailsModel = new ProductDetailsModel()
             {
-                Id = 5,
+                Id = 11,
                 Name = "Test product 1",
                 Description = "Test product 1 description",
                 ImageUrl = "",
@@ -200,7 +200,120 @@ namespace Formula1Store.UnitTests
                 Price = 50
             };
 
-            Assert.That(productDetailsModel.Id, Is.EqualTo(productService.ProductDetails(5).Id));
+            Assert.That(productDetailsModel.Id, Is.EqualTo(productService.ProductDetails(11).Id));
+        }
+
+        [Test]
+        public async Task TestExists()
+        {
+
+            var loggerMock = new Mock<ILogger<ProductService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(context);
+            productService = new ProductService(repo, logger);
+
+            await repo.AddRangeAsync(new List<Product>()
+            {
+               new Product() { Id = 11, Name = "Test product 1", Description = "Test product 1 description", ImageUrl = "", Price = 50, CategoryId = 1, IsActive = true },
+                new Product() { Id = 13, Name = "Test product 3", Description = "Test product 3 description", ImageUrl = "", Price = 50, CategoryId = 3, IsActive = false }
+            });
+
+            await repo.SaveChangesAsync();
+
+            Assert.That(true, Is.EqualTo(await productService.Exists(11)));
+            Assert.That(false, Is.EqualTo(await productService.Exists(13)));
+            Assert.That(false, Is.EqualTo(await productService.Exists(15)));
+        }
+
+        [Test]
+        public async Task TestGetProductCategoryId()
+        {
+
+            var loggerMock = new Mock<ILogger<ProductService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(context);
+            productService = new ProductService(repo, logger);
+
+            await repo.AddRangeAsync(new List<Category>()
+            {
+                new (){ Id = 10, Name = "Socks"},
+                new (){ Id = 11, Name = "Gloves"}
+            });
+
+            await repo.AddRangeAsync(new List<Product>()
+            {
+                new Product() { Id = 11, Name = "Test product 1", Description = "Test product 1 description", ImageUrl = "", Price = 50, CategoryId = 10, IsActive = true },
+                new Product() { Id = 13, Name = "Test product 3", Description = "Test product 3 description", ImageUrl = "", Price = 50, CategoryId = 11, IsActive = false }
+            });
+            await repo.SaveChangesAsync();
+
+
+            Assert.That(10, Is.EqualTo(await productService.GetProductCategoryId(11)));
+            Assert.That(11, Is.EqualTo(await productService.GetProductCategoryId(13)));
+        }
+
+        [Test]
+        public async Task TestEdit()
+        {
+
+            var loggerMock = new Mock<ILogger<ProductService>>();
+            logger = loggerMock.Object;
+            var repo = new Repository(context);
+            productService = new ProductService(repo, logger);
+
+            var product = new Product()
+            {
+                Id = 10,
+                Name = "Test product 1",
+                Description = "Test product 1 description",
+                ImageUrl = "",
+                Price = 22.50m,
+                CategoryId = 1,
+                IsActive = true
+            };
+
+            await repo.AddAsync(product);
+            await repo.SaveChangesAsync();
+
+            var productModel = new ProductModel()
+            {
+                Id = 10,
+                Name = "Test Edit product",
+                Description = "Test Edit product description",
+                ImageUrl = "",
+                Price = 77.50m,
+                CategoryId = 1,
+            };
+            await productService.Edit(1, productModel);
+            var editedModel = await repo.GetByIdAsync<Product>(10);
+
+            Assert.That(product.Name, Is.EqualTo(editedModel.Name));
+            Assert.That(product.Description, Is.EqualTo(editedModel.Description));
+            Assert.That(product.Price, Is.EqualTo(editedModel.Price));
+            Assert.That(product.CategoryId, Is.EqualTo(editedModel.CategoryId));
+        }
+
+        [Test]
+        public async Task TestDelete()
+        {
+            var repo = new Repository(context);
+            var initialProductsCount = repo.AllReadonly<Product>().Count();
+            productService = new ProductService(repo, logger);
+
+            var loggerMock = new Mock<ILogger<ProductService>>();
+            logger = loggerMock.Object;
+
+            var productCollection = new List<Product>()
+            {
+                new Product() { Id = 11, Name = "Test product 1", Description = "Test product 1 description", ImageUrl = "", Price = 50, CategoryId = 10, IsActive = true },
+                new Product() { Id = 13, Name = "Test product 3", Description = "Test product 3 description", ImageUrl = "", Price = 50, CategoryId = 11, IsActive = true }
+            };
+            await repo.AddRangeAsync(productCollection);
+            await repo.SaveChangesAsync();
+
+            await productService.Delete(13);
+
+            Assert.That(initialProductsCount + 1, Is.EqualTo(repo.AllReadonly<Product>().Where(x => x.IsActive).Count()));
         }
     }
 }

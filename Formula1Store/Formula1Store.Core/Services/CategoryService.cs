@@ -3,6 +3,7 @@ using Formula1Store.Core.Models.Category;
 using Formula1Store.Core.Repositories;
 using Formula1Store.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Formula1Store.Core.Services
 {
@@ -10,9 +11,12 @@ namespace Formula1Store.Core.Services
     {
         private readonly IRepository repo;
 
-        public CategoryService(IRepository _repo)
+        private readonly ILogger logger;
+
+        public CategoryService(IRepository _repo, ILogger _logger)
         {
             this.repo = _repo;
+            this.logger = _logger;
         }
 
         public async Task<IEnumerable<CategoryViewModel>> GetAll()
