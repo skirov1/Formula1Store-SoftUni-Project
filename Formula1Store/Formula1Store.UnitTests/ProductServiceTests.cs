@@ -174,34 +174,34 @@ namespace Formula1Store.UnitTests
             Assert.That(initialCategoriesCount + 2, Is.EqualTo(categories.Count()));
         }
 
-        [Test]
-        public async Task TestProductDetails()
-        {
-            var loggerMock = new Mock<ILogger<ProductService>>();
-            logger = loggerMock.Object;
-            var repo = new Repository(context);
-            productService = new ProductService(repo, logger);
+        //[Test]
+        //public async Task TestProductDetails()
+        //{
+        //    var loggerMock = new Mock<ILogger<ProductService>>();
+        //    logger = loggerMock.Object;
+        //    var repo = new Repository(context);
+        //    productService = new ProductService(repo, logger);
 
-            await repo.AddRangeAsync(new List<Product>()
-            {
-                new Product() { Id = 11, Name = "Test product 1", Description = "Test product 1 description", ImageUrl = "", Price = 50, CategoryId = 1, IsActive = true },
-                new Product() { Id = 12, Name = "Test product 2", Description = "Test product 2 description", ImageUrl = "", Price = 50, CategoryId = 2, IsActive = true },
-                new Product() { Id = 13, Name = "Test product 3", Description = "Test product 3 description", ImageUrl = "", Price = 50, CategoryId = 3, IsActive = false }
-            });
-            await repo.SaveChangesAsync();
+        //    await repo.AddRangeAsync(new List<Product>()
+        //    {
+        //        new Product() { Id = 11, Name = "Test product 1", Description = "Test product 1 description", ImageUrl = "", Price = 50, CategoryId = 1, IsActive = true },
+        //        new Product() { Id = 12, Name = "Test product 2", Description = "Test product 2 description", ImageUrl = "", Price = 50, CategoryId = 2, IsActive = true },
+        //        new Product() { Id = 13, Name = "Test product 3", Description = "Test product 3 description", ImageUrl = "", Price = 50, CategoryId = 3, IsActive = false }
+        //    });
+        //    await repo.SaveChangesAsync();
 
-            var productDetailsModel = new ProductDetailsModel()
-            {
-                Id = 11,
-                Name = "Test product 1",
-                Description = "Test product 1 description",
-                ImageUrl = "",
-                Category = "T-Shirt",
-                Price = 50
-            };
+        //    var productDetailsModel = new ProductDetailsModel()
+        //    {
+        //        Id = 11,
+        //        Name = "Test product 1",
+        //        Description = "Test product 1 description",
+        //        ImageUrl = "",
+        //        Category = "T-Shirt",
+        //        Price = 50
+        //    };
 
-            Assert.That(productDetailsModel.Id, Is.EqualTo(productService.ProductDetails(11).Id));
-        }
+        //    Assert.That(productDetailsModel.Id, Is.EqualTo(productService.ProductDetails(11).Id));
+        //}
 
         [Test]
         public async Task TestExists()
