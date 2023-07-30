@@ -40,6 +40,7 @@ namespace Formula1Store.Controllers
 
             var user = new User()
             {
+                Id = Guid.NewGuid().ToString(),
                 FirstName = model.FirstName,
                 LastName = model.LastName,
                 UserName = model.UserName,
@@ -47,8 +48,6 @@ namespace Formula1Store.Controllers
             };
 
             var result = await userManager.CreateAsync(user, model.Password);
-
-            await this.userManager.AddToRoleAsync(user, "User");
 
             if (result.Succeeded)
             {
